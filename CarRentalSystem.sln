@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalSystem", "CarRentalSystem\CarRentalSystem.csproj", "{5F3D85C6-FAC5-49B6-9AD5-FF53F629C237}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalSystem.DAL", "CarRentalSystem.DAL\CarRentalSystem.DAL.csproj", "{084BF9E0-0FD0-4C82-A609-23F19180FAED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F3D85C6-FAC5-49B6-9AD5-FF53F629C237}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F3D85C6-FAC5-49B6-9AD5-FF53F629C237}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F3D85C6-FAC5-49B6-9AD5-FF53F629C237}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F3D85C6-FAC5-49B6-9AD5-FF53F629C237}.Release|Any CPU.Build.0 = Release|Any CPU
+		{084BF9E0-0FD0-4C82-A609-23F19180FAED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{084BF9E0-0FD0-4C82-A609-23F19180FAED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{084BF9E0-0FD0-4C82-A609-23F19180FAED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{084BF9E0-0FD0-4C82-A609-23F19180FAED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
