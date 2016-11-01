@@ -3,54 +3,113 @@
 @{
     ViewBag.Title = "Details";
 }
-
 <h2>Details</h2>
 
 <div>
     <h4>Car</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Model)
-        </dd>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".slider").slider({ full_width: true });
+        });;
+    </script>
+    <div class="slider">
+        <ul class="slides">
+            @for (int i = 0; i < Model.Pictures.Count; i++)
+            {
+                <li>
+                    <img src=@Model.Pictures.ToList()[i].Path>
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-s9">
+            <table cellspacing="3" cellpadding="1">
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Mark)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Volume)
-        </dt>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Mark.MarkType)
+                    </td>
+                </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Volume)
-        </dd>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Body)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Body)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Fuel)
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Fuel)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Mileage)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Mileage)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Transmission)
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Transmission)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Model)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Volume)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Volume)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Price)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Description)
+                    </td>
+                </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IdMark)
-        </dt>
+            </table>
 
-        <dd>
-            @Html.DisplayFor(model => model.IdMark)
-        </dd>
-
-    </dl>
+        </div>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

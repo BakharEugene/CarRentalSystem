@@ -122,8 +122,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CarsController.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -132,19 +132,56 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\user.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\Force India.jpg" />
     <Content Include="Images\Haas.jpg" />
     <Content Include="Images\Manor.jpg" />
+    <Content Include="Images\Marks\Acura.jpg" />
+    <Content Include="Images\Marks\alfa-romeo.png" />
+    <Content Include="Images\Marks\audi.png" />
+    <Content Include="Images\Marks\BMW.png" />
+    <Content Include="Images\Marks\chery.png" />
+    <Content Include="Images\Marks\chevrolet.png" />
+    <Content Include="Images\Marks\chrysler.png" />
+    <Content Include="Images\Marks\citroen.png" />
+    <Content Include="Images\Marks\daewoo.jpg" />
+    <Content Include="Images\Marks\dodge.png" />
+    <Content Include="Images\Marks\fiat.png" />
+    <Content Include="Images\Marks\Ford.png" />
+    <Content Include="Images\Marks\honda.jpg" />
+    <Content Include="Images\Marks\Hyundai.jpg" />
+    <Content Include="Images\Marks\infiniti.jpg" />
+    <Content Include="Images\Marks\jaguar.png" />
+    <Content Include="Images\Marks\Jeep.png" />
+    <Content Include="Images\Marks\kia.png" />
+    <Content Include="Images\Marks\lada.png" />
+    <Content Include="Images\Marks\lancia.png" />
+    <Content Include="Images\Marks\land-rover.png" />
+    <Content Include="Images\Marks\lexus.jpg" />
+    <Content Include="Images\Marks\mazda.png" />
+    <Content Include="Images\Marks\mercedes.png" />
+    <Content Include="Images\Marks\Mitsubishi.png" />
+    <Content Include="Images\Marks\nissan.png" />
+    <Content Include="Images\Marks\opel.png" />
+    <Content Include="Images\Marks\peugeot.png" />
+    <Content Include="Images\Marks\Porsche.png" />
+    <Content Include="Images\Marks\renault.png" />
+    <Content Include="Images\Marks\Rover.png" />
+    <Content Include="Images\Marks\saab.png" />
+    <Content Include="Images\Marks\SEAT.png" />
+    <Content Include="Images\Marks\skoda.png" />
+    <Content Include="Images\Marks\subaru.png" />
+    <Content Include="Images\Marks\suzuki.jpg" />
+    <Content Include="Images\Marks\toyota.png" />
+    <Content Include="Images\Marks\UAZ.png" />
+    <Content Include="Images\Marks\Volkswagen.png" />
+    <Content Include="Images\Marks\volvo.png" />
     <Content Include="Images\McLaren.jpg" />
     <Content Include="Images\Mersedes.jpg" />
     <Content Include="Images\react.png" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <None Include="Scripts\jquery-2.1.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -171,26 +208,18 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Customers\Create.cshtml" />
-    <Content Include="Views\Customers\Delete.cshtml" />
-    <Content Include="Views\Customers\Details.cshtml" />
-    <Content Include="Views\Customers\Edit.cshtml" />
-    <Content Include="Views\Customers\Index.cshtml" />
-    <Content Include="Views\Cars\Create.cshtml" />
     <Content Include="Views\Cars\Delete.cshtml" />
     <Content Include="Views\Cars\Details.cshtml" />
     <Content Include="Views\Cars\Edit.cshtml" />
     <Content Include="Views\Cars\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Cars\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Files\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>

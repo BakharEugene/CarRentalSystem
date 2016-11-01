@@ -8,19 +8,19 @@ using System.Web;
 using System.Web.Mvc;
 using CarRentalSystem.DAL.EF;
 using CarRentalSystem.DAL.Models.Car;
+using CarRentalSystem.DAL.Models.Pictures;
 using CarRentalSystem.DAL.Models;
 
 namespace CarRentalSystem.Controllers
 {
     public class CarsController : Controller
     {
-        private CarRentalSystemContext db = new CarRentalSystemContext();
 
         UnitOfWork unit = new UnitOfWork();
         // GET: Cars
         public ActionResult Index()
         {
-            List<Car> Cars = db.Cars.ToList();
+            List<Car> Cars = unit.Cars.GetAll().ToList();// db.Cars.ToList();
             return View(Cars);
         }
 
@@ -31,7 +31,7 @@ namespace CarRentalSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Car car = db.Cars.Find(id);
+            Car car = unit.Cars.GetById(id);// db.Cars.Find(id);
             if (car == null)
             {
                 return HttpNotFound();
@@ -43,7 +43,7 @@ namespace CarRentalSystem.Controllers
         public ActionResult Create()
         {
 
-            SelectList Marks = new SelectList(db.Marks, "Id", "MarkType");
+            SelectList Marks = new SelectList(unit.Marks.GetAll(), "Id", "MarkType");//(.Marks, "Id", "MarkType");
             ViewBag.Marks = Marks;
             return View();
         }
@@ -55,10 +55,10 @@ namespace CarRentalSystem.Controllers
         public ActionResult Create(Car car)
         {
             car.Mark = unit.Marks.GetById(car.IdMark);
-            //Добавляем игрока в таблицу
-            db.Cars.Add(car);
-            
-            db.SaveChanges();
+
+            unit.Cars.Create(car);
+            unit.Save();
+            //db.SaveChanges();
             // перенаправляем на главную страницу
             return RedirectToAction("Index");
         }
@@ -70,11 +70,13 @@ namespace CarRentalSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Car car = db.Cars.Find(id);
+            Car car = unit.Cars.GetById(id);//db.Cars.Find(id);
             if (car == null)
             {
                 return HttpNotFound();
             }
+            SelectList Marks = new SelectList(unit.Marks.GetAll(), "Id", "MarkType");//(.Marks, "Id", "MarkType");
+            ViewBag.Marks = Marks;
             return View(car);
         }
 
@@ -83,12 +85,14 @@ namespace CarRentalSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Model,Volume,Price,Description,IdMark")] Car car)
+        public ActionResult Edit([Bind(Include = "Id,Model,Volume,Price,Description,IdMark,Mark,Fuel,Transmission,Body,Mileage")] Car car)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(car).State = EntityState.Modified;
-                db.SaveChanges();
+                car.Mark = unit.Marks.GetById(car.IdMark);
+                unit.Cars.Update(car);
+                unit.Save();
+                
                 return RedirectToAction("Index");
             }
             return View(car);
@@ -101,12 +105,32 @@ namespace CarRentalSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Car car = db.Cars.Find(id);
+            Car car = unit.Cars.GetById(id);
             if (car == null)
             {
                 return HttpNotFound();
             }
             return View(car);
+        }
+        [HttpPost]
+        public ActionResult Upload(HttpPostedFileBase upload,  Car car)
+        {
+            if (upload != null)
+            {
+                string fileName = System.IO.Path.GetFileName(upload.FileName);
+                car.Mark = unit.Marks.GetById(car.IdMark);
+                upload.SaveAs(Server.MapPath("/Images/" + fileName));
+                unit.CarsPictures.Create(new CarPictures("/Images/" + fileName, car));
+                unit.Cars.Create(car);
+                unit.Save();
+
+            }
+            else {
+                car.Mark = unit.Marks.GetById(car.IdMark);
+                unit.Cars.Create(car);
+                unit.Save();
+            }
+            return RedirectToAction("Index");
         }
 
         // POST: Cars/Delete/5
@@ -114,25 +138,26 @@ namespace CarRentalSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Car car = db.Cars.Find(id);
+            Car car = unit.Cars.GetById(id);
             var g = "";
-            foreach (var pict in car.Pictures)
+            car.Pictures.Clear();
+            unit.Cars.Delete(car.Id);
+            foreach (var pict in unit.CarsPictures.GetAll())
             {
-                Picture picture = db.Pictures.Find(pict.Id);
-                db.Pictures.Remove(picture);
-
-                car.Pictures.Remove(pict);
+                if (pict.CarId == null)
+                {
+                    unit.CarsPictures.Delete(pict.Id);
+                }
             }
-            db.Cars.Remove(car);
-            db.SaveChanges();
+            unit.Save();
+            
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                unit.Dispose();
             }
             base.Dispose(disposing);
         }

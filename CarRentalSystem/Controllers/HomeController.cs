@@ -10,11 +10,13 @@ namespace CarRentalSystem.Controllers
     {
         public ActionResult Index()
         {
+            string result = "";
+            if (User.Identity.IsAuthenticated)
+            {
+                result = "Ваш логин: " + User.Identity.Name;
+            }
             return View();
         }
-
-
-      
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
