@@ -8,7 +8,7 @@ using System.Web.Routing;
 namespace CarRentalSystem
 {
     public class RouteConfig
-    {
+    {//l
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");

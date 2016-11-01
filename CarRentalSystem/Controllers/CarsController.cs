@@ -15,6 +15,7 @@ namespace CarRentalSystem.Controllers
 {
     public class CarsController : Controller
     {
+        //l
 
         UnitOfWork unit = new UnitOfWork();
         // GET: Cars
@@ -89,7 +90,7 @@ namespace CarRentalSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                car.Mark = unit.Marks.GetById(car.IdMark);
+                
                 unit.Cars.Update(car);
                 unit.Save();
                 
@@ -113,23 +114,26 @@ namespace CarRentalSystem.Controllers
             return View(car);
         }
         [HttpPost]
-        public ActionResult Upload(HttpPostedFileBase upload,  Car car)
+        public ActionResult Upload(IEnumerable<HttpPostedFileBase> uploads, Car car)
         {
-            if (upload != null)
-            {
-                string fileName = System.IO.Path.GetFileName(upload.FileName);
-                car.Mark = unit.Marks.GetById(car.IdMark);
-                upload.SaveAs(Server.MapPath("/Images/" + fileName));
-                unit.CarsPictures.Create(new CarPictures("/Images/" + fileName, car));
-                unit.Cars.Create(car);
-                unit.Save();
+            car.Mark = unit.Marks.GetById(car.IdMark);
 
+            foreach (var file in uploads)
+            {
+                if (file != null)
+                {
+                    // получаем имя файла
+                    string fileName = System.IO.Path.GetFileName(file.FileName);
+                    // сохраняем файл в папку Files в проекте
+                    file.SaveAs(Server.MapPath("~/Files/" + fileName));
+                    unit.CarsPictures.Create(new CarPictures("/Images/" + fileName, car));
+
+                }
             }
-            else {
-                car.Mark = unit.Marks.GetById(car.IdMark);
-                unit.Cars.Create(car);
-                unit.Save();
-            }
+
+            unit.Cars.Create(car);
+            unit.Save();
+          
             return RedirectToAction("Index");
         }
 

@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Home</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <!-- Compiled and minified JavaScript -->
+</head>
+
+<body>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper grey">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="#!" class="brand-logo left">
+                        Hi, @User.Identity.Name
+                    </a>
+                }
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "active" })
+                    </li>
+
+                    <li>
+                        @Html.ActionLink("Cars", "Index", "Cars", new { area = "" }, new { @class = "active" })
+
+                    </li>
+
+                    <li>
+                        @Html.ActionLink("Search", "Index", "Cars", new { area = "" }, new { @class = "active" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Cars", "Index", "Cars", new { area = "" }, new { @class = "active" })
+                    </li>
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            @Html.ActionLink("Personal Cabinet", "Register", "Account", new { area = "" }, new {@class="active" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Log out", "Logoff", "Account", new { area = "" }, new { @class="active"})
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            @Html.ActionLink("Register", "Register", "Account", new { area = "" }, new { @class = "active" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "active" })
+                        </li>
+                    }
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+    @{
+        CarRentalSystem.DAL.Models.UnitOfWork unit = new CarRentalSystem.DAL.Models.UnitOfWork();
+        List<CarRentalSystem.DAL.Models.Car.Mark> marks = unit.Marks.GetAll().ToList();
+    }
+
+    <ul class="collection left" style="max-height:850px;    overflow:auto">
+        @foreach (CarRentalSystem.DAL.Models.Car.Mark mark in marks)
+        {
+            <li class="collection-item avatar">
+                <img src="@mark.MarkPictrure.Path" alt="" class="circle">
+                <span class="modal-title upper">@mark.MarkType</span>
+                <a href="#!" class="secondary-content"></a>
+            </li>
+        }
+    </ul>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

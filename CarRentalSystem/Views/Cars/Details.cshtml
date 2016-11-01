@@ -9,20 +9,24 @@
     <h4>Car</h4>
     <hr />
 
+    @*
+    *@
     <script>
+
         jQuery(document).ready(function ($) {
-            $(".slider").slider({ full_width: true });
-        });;
+
+            $('.carousel').carousel(
+                {
+                }
+                );
+        });
+
     </script>
-    <div class="slider">
-        <ul class="slides">
-            @for (int i = 0; i < Model.Pictures.Count; i++)
-            {
-                <li>
-                    <img src=@Model.Pictures.ToList()[i].Path>
-                </li>
-            }
-        </ul>
+    <div class="carousel" style="height:700px;">
+        @for (int i = 0; i < Model.Pictures.Count; i++)
+        {
+            <a class="carousel-item" style="width:70%; height:700px;"><img style="height:700px;" src=@Model.Pictures.ToList()[i].Path /></a>
+        }
     </div>
     <div class="row">
         <div class="col-s9">

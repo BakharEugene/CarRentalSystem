@@ -13,7 +13,7 @@ namespace CarRentalSystem.Controllers
     public class AccountController : Controller
     {
         public ActionResult Login()
-        {
+        {//kek;
             return View();
         }
         UnitOfWork unit = new UnitOfWork();
@@ -80,7 +80,8 @@ namespace CarRentalSystem.Controllers
                             ConfirmPassword = model.ConfirmPassword,
                             Gender = model.Gender,
                             Skype = model.Skype,
-                            Telephone = model.Skype
+                            Telephone = model.Skype,
+                            RoleId=2
                         });
                         unit.Save();
                         //db.SaveChanges();

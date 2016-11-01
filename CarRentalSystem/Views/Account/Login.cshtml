@@ -1,0 +1,29 @@
+﻿@model CarRentalSystem.DAL.Models.Users.LoginModel
+<h2>Log In  </h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div>
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+
+        <div>
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Sign in" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
