@@ -199,25 +199,72 @@
     <Compile Include="Migrations\201611012048504_initial16.Designer.cs">
       <DependentUpon>201611012048504_initial16.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611040728499_initial17.cs" />
+    <Compile Include="Migrations\201611040728499_initial17.Designer.cs">
+      <DependentUpon>201611040728499_initial17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611040730254_initial18.cs" />
+    <Compile Include="Migrations\201611040730254_initial18.Designer.cs">
+      <DependentUpon>201611040730254_initial18.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611041522365_initial19.cs" />
+    <Compile Include="Migrations\201611041522365_initial19.Designer.cs">
+      <DependentUpon>201611041522365_initial19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611041523261_initial20.cs" />
+    <Compile Include="Migrations\201611041523261_initial20.Designer.cs">
+      <DependentUpon>201611041523261_initial20.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611041527280_initial21.cs" />
+    <Compile Include="Migrations\201611041527280_initial21.Designer.cs">
+      <DependentUpon>201611041527280_initial21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611041528159_initial22.cs" />
+    <Compile Include="Migrations\201611041528159_initial22.Designer.cs">
+      <DependentUpon>201611041528159_initial22.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611050732505_initial23.cs" />
+    <Compile Include="Migrations\201611050732505_initial23.Designer.cs">
+      <DependentUpon>201611050732505_initial23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611050746315_initial24.cs" />
+    <Compile Include="Migrations\201611050746315_initial24.Designer.cs">
+      <DependentUpon>201611050746315_initial24.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611051623517_initial25.cs" />
+    <Compile Include="Migrations\201611051623517_initial25.Designer.cs">
+      <DependentUpon>201611051623517_initial25.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Car\Body.cs" />
     <Compile Include="Models\Car\Car.cs" />
+    <Compile Include="Models\Car\DriveUnit.cs" />
+    <Compile Include="Models\Car\Fuel.cs" />
     <Compile Include="Models\Car\Mark.cs" />
+    <Compile Include="Models\Car\Transmission.cs" />
     <Compile Include="Models\Information\Enums.cs" />
+    <Compile Include="Models\Order History\OrderHistory.cs" />
+    <Compile Include="Models\Pictures\BodyPictures.cs" />
     <Compile Include="Models\Pictures\CarPictures.cs" />
     <Compile Include="Models\Pictures\MarkPicture.cs" />
     <Compile Include="Models\Providers\CustomProvider.cs" />
-    <Compile Include="Models\UnitOfWork.cs" />
+    <Compile Include="Models\Information\UnitOfWork.cs" />
+    <Compile Include="Models\Users\Human.cs" />
     <Compile Include="Models\Users\Role.cs" />
     <Compile Include="Models\Users\User.cs" />
-    <Compile Include="Models\Users\Human.cs" />
     <Compile Include="Models\Users\LoginModel.cs" />
     <Compile Include="Models\Users\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BodyRepository.cs" />
     <Compile Include="Repositories\CarPicturesRepository.cs" />
     <Compile Include="Repositories\CarRepository.cs" />
+    <Compile Include="Repositories\DriveUnitRepository.cs" />
+    <Compile Include="Repositories\FuelRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\MarkPicturesRepository.cs" />
     <Compile Include="Repositories\MarkRepository.cs" />
+    <Compile Include="Repositories\OrderHistoryRepository.cs" />
+    <Compile Include="Repositories\TransmissionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -276,6 +323,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611012048504_initial16.resx">
       <DependentUpon>201611012048504_initial16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611040728499_initial17.resx">
+      <DependentUpon>201611040728499_initial17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611040730254_initial18.resx">
+      <DependentUpon>201611040730254_initial18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611041522365_initial19.resx">
+      <DependentUpon>201611041522365_initial19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611041523261_initial20.resx">
+      <DependentUpon>201611041523261_initial20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611041527280_initial21.resx">
+      <DependentUpon>201611041527280_initial21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611041528159_initial22.resx">
+      <DependentUpon>201611041528159_initial22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611050732505_initial23.resx">
+      <DependentUpon>201611050732505_initial23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611050746315_initial24.resx">
+      <DependentUpon>201611050746315_initial24.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611051623517_initial25.resx">
+      <DependentUpon>201611051623517_initial25.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

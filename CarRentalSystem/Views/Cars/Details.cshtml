@@ -3,10 +3,8 @@
 @{
     ViewBag.Title = "Details";
 }
-<h2>Details</h2>
-
 <div>
-    <h4>Car</h4>
+    <h4>@Model.Mark.MarkType  @Model.Model</h4>
     <hr />
 
     @*
@@ -22,12 +20,15 @@
         });
 
     </script>
-    <div class="carousel" style="height:700px;">
-        @for (int i = 0; i < Model.Pictures.Count; i++)
-        {
-            <a class="carousel-item" style="width:70%; height:700px;"><img style="height:700px;" src=@Model.Pictures.ToList()[i].Path /></a>
-        }
-    </div>
+    @if (Model.Pictures.Count != 0)
+    {
+        <div class="carousel" style="height:700px;">
+            @for (int i = 0; i < Model.Pictures.Count; i++)
+            {
+                <a class="carousel-item" style="width:70%; height:700px;"><img style="height:700px;" src=@Model.Pictures.ToList()[i].Path /></a>
+            }
+        </div>
+    }
     <div class="row">
         <div class="col-s9">
             <table cellspacing="3" cellpadding="1">
@@ -47,7 +48,7 @@
 
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.Body)
+                        @Html.DisplayFor(model => model.Body.Name)
                     </td>
                 </tr>
                 <tr>
@@ -56,7 +57,7 @@
 
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.Fuel)
+                        @Html.DisplayFor(model => model.Fuel.Name)
                     </td>
                 </tr>
                 <tr>
@@ -74,7 +75,7 @@
 
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.Transmission)
+                        @Html.DisplayFor(model => model.Transmission.Name)
                     </td>
                 </tr>
                 <tr>
@@ -116,6 +117,10 @@
     </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default grey" })
+    @Html.ActionLink("Order", "ConfirmOrder", new {id=Model.Id }, new { @class = "btn btn-default grey" })
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default grey" })
+    }
 </p>

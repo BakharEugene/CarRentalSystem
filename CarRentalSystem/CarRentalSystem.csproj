@@ -139,6 +139,12 @@
     <Content Include="Images\2019-Audi-R10-The-New-Hypercar-Concept-From-Audi...jpg" />
     <Content Include="Images\Audi-R10-Concept-2.jpg" />
     <Content Include="Images\Audi-R10-Concept-3.jpg" />
+    <Content Include="Images\Bodies\cabriolet.png" />
+    <Content Include="Images\Bodies\minivan.png" />
+    <Content Include="Images\Bodies\pickup.png" />
+    <Content Include="Images\Bodies\sedan.png" />
+    <Content Include="Images\Bodies\SUV.png" />
+    <Content Include="Images\Bodies\van.png" />
     <Content Include="Images\Force India.jpg" />
     <Content Include="Images\Haas.jpg" />
     <Content Include="Images\Manor.jpg" />
@@ -214,10 +220,12 @@
     <Content Include="Views\Cars\Delete.cshtml" />
     <Content Include="Views\Cars\Details.cshtml" />
     <Content Include="Views\Cars\Edit.cshtml" />
-    <Content Include="Views\Cars\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Cars\Create.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Cars\Index.cshtml" />
+    <Content Include="Views\Cars\ConfirmOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

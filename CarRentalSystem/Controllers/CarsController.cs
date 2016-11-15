@@ -10,6 +10,7 @@ using CarRentalSystem.DAL.EF;
 using CarRentalSystem.DAL.Models.Car;
 using CarRentalSystem.DAL.Models.Pictures;
 using CarRentalSystem.DAL.Models;
+using CarRentalSystem.DAL.Models.Order_History;
 
 namespace CarRentalSystem.Controllers
 {
@@ -24,7 +25,19 @@ namespace CarRentalSystem.Controllers
             List<Car> Cars = unit.Cars.GetAll().ToList();// db.Cars.ToList();
             return View(Cars);
         }
-
+        public ActionResult ConfirmOrder(int? id)
+        {
+            ViewBag.CarName = unit.Cars.GetById(id).Mark.MarkType+" "+ unit.Cars.GetById(id).Model ;
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmOrder(OrderHistory order)
+        {
+            unit.OrderHistories.Create(order);
+            unit.Save();
+            return RedirectToAction("Index");
+        }
         // GET: Cars/Details/5
         public ActionResult Details(int? id)
         {
@@ -45,6 +58,16 @@ namespace CarRentalSystem.Controllers
         {
 
             SelectList Marks = new SelectList(unit.Marks.GetAll(), "Id", "MarkType");//(.Marks, "Id", "MarkType");
+            SelectList Bodies = new SelectList(unit.Bodies.GetAll(), "Id", "Name");
+            SelectList Transmissions = new SelectList(unit.Transmissions.GetAll(), "Id", "Name");
+            SelectList DriveUnits = new SelectList(unit.DriveUnits.GetAll(), "Id", "Name");
+            SelectList Fuels = new SelectList(unit.Fuels.GetAll(), "Id", "Name");
+
+
+            ViewBag.Fuels = Fuels;
+            ViewBag.DriveUnits = DriveUnits;
+            ViewBag.Bodies = Bodies;
+            ViewBag.Transmissions = Transmissions;
             ViewBag.Marks = Marks;
             return View();
         }
@@ -56,6 +79,10 @@ namespace CarRentalSystem.Controllers
         public ActionResult Create(Car car)
         {
             car.Mark = unit.Marks.GetById(car.IdMark);
+            car.Body = unit.Bodies.GetById(car.IdBody);
+            car.DriveUnit = unit.DriveUnits.GetById(car.IdDriveUnit);
+            car.Fuel = unit.Fuels.GetById(car.IdFuel);
+            car.Transmission = unit.Transmissions.GetById(car.IdTransmission);
 
             unit.Cars.Create(car);
             unit.Save();
@@ -86,7 +113,7 @@ namespace CarRentalSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Model,Volume,Price,Description,IdMark,Mark,Fuel,Transmission,Body,Mileage")] Car car)
+        public ActionResult Edit([Bind(Include = "Id,Model,Volume,Price,Description,IdMark,IdFuel,IdTransmission,IdBody,IdDriveUnit,Mark,Mileage")] Car car)
         {
             if (ModelState.IsValid)
             {
@@ -116,18 +143,24 @@ namespace CarRentalSystem.Controllers
         [HttpPost]
         public ActionResult Upload(IEnumerable<HttpPostedFileBase> uploads, Car car)
         {
+            car.Body = unit.Bodies.GetById(car.IdBody);
             car.Mark = unit.Marks.GetById(car.IdMark);
-
-            foreach (var file in uploads)
+            car.DriveUnit = unit.DriveUnits.GetById(car.IdDriveUnit);
+            car.Fuel = unit.Fuels.GetById(car.IdFuel);
+            car.Transmission = unit.Transmissions.GetById(car.IdTransmission);
+            if (uploads != null)
             {
-                if (file != null)
+                foreach (var file in uploads)
                 {
-                    // получаем имя файла
-                    string fileName = System.IO.Path.GetFileName(file.FileName);
-                    // сохраняем файл в папку Files в проекте
-                    file.SaveAs(Server.MapPath("~/Files/" + fileName));
-                    unit.CarsPictures.Create(new CarPictures("/Images/" + fileName, car));
+                    if (file != null)
+                    {
+                        // получаем имя файла
+                        string fileName = System.IO.Path.GetFileName(file.FileName);
+                        // сохраняем файл в папку Files в проекте
+                        file.SaveAs(Server.MapPath("~/Files/" + fileName));
+                        unit.CarsPictures.Create(new CarPictures("/Images/" + fileName, car));
 
+                    }
                 }
             }
 

@@ -18,6 +18,60 @@ namespace CarRentalSystem.DAL.Models
         private MarkPicturesRepository markPicturesRepository;
         private CarPicturesRepository carPicturesRepository;
         private UserRepository userRepository;
+        private BodyRepository bodyRepository;
+        private DriveUnitRepository driveUnitRepository;
+        private FuelRepository fuelRepository;
+        private TransmissionRepository transmissionRepository;
+        private OrderHistoryRepository orderHistoryRepository;
+
+        public OrderHistoryRepository OrderHistories
+        {
+            get
+            {
+                if (orderHistoryRepository == null)
+                    orderHistoryRepository = new OrderHistoryRepository(db);
+                return orderHistoryRepository;
+            }
+        }
+
+        public BodyRepository Bodies
+        {
+            get
+            {
+                if (bodyRepository == null)
+                    bodyRepository = new BodyRepository(db);
+                return bodyRepository;
+            }
+        }
+        public DriveUnitRepository DriveUnits
+        {
+            get
+            {
+                if (driveUnitRepository == null)
+                    driveUnitRepository = new DriveUnitRepository(db);
+                return driveUnitRepository;
+            }
+        }
+        public FuelRepository Fuels
+        {
+            get
+            {
+                if (fuelRepository == null)
+                    fuelRepository = new FuelRepository(db);
+                return fuelRepository;
+            }
+        }
+        public TransmissionRepository Transmissions
+        {
+            get
+            {
+                if (transmissionRepository == null)
+                    transmissionRepository = new TransmissionRepository(db);
+                return transmissionRepository;
+            }
+        }
+
+
         public MarkPicturesRepository MarksPictures
         {
             get
@@ -27,6 +81,7 @@ namespace CarRentalSystem.DAL.Models
                 return markPicturesRepository;
             }
         }
+
         public UserRepository Users
         {
             get

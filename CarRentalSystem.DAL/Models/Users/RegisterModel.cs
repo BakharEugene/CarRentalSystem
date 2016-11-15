@@ -16,8 +16,6 @@ namespace CarRentalSystem.DAL.Models.Users
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
-        
-        
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }

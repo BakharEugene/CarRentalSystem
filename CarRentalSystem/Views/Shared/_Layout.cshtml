@@ -11,9 +11,6 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
-    <!-- Compiled and minified JavaScript -->
 </head>
 
 <body>
@@ -33,21 +30,17 @@
 
                     <li>
                         @Html.ActionLink("Cars", "Index", "Cars", new { area = "" }, new { @class = "active" })
-
                     </li>
-
-                    <li>
-                        @Html.ActionLink("Search", "Index", "Cars", new { area = "" }, new { @class = "active" })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Cars", "Index", "Cars", new { area = "" }, new { @class = "active" })
-                    </li>
-
-
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>
+                            @Html.ActionLink("List of Users", "Index", "Account", new { area = "" }, new { @class = "active" })
+                        </li>
+                    }
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>
-                            @Html.ActionLink("Personal Cabinet", "Register", "Account", new { area = "" }, new {@class="active" })
+                            @Html.ActionLink("Profile", "Register", "Account", new { area = "" }, new {@class="active" })
                         </li>
                         <li>
                             @Html.ActionLink("Log out", "Logoff", "Account", new { area = "" }, new { @class="active"})
@@ -62,6 +55,7 @@
                             @Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "active" })
                         </li>
                     }
+                   
                 </ul>
 
             </div>
@@ -70,14 +64,28 @@
     @{
         CarRentalSystem.DAL.Models.UnitOfWork unit = new CarRentalSystem.DAL.Models.UnitOfWork();
         List<CarRentalSystem.DAL.Models.Car.Mark> marks = unit.Marks.GetAll().ToList();
+        List<CarRentalSystem.DAL.Models.Car.Body> bodies=unit.Bodies.GetAll().ToList();
     }
 
-    <ul class="collection left" style="max-height:850px;    overflow:auto">
+    <ul class="collection left" style="max-height:850px;overflow:auto">
         @foreach (CarRentalSystem.DAL.Models.Car.Mark mark in marks)
         {
             <li class="collection-item avatar">
                 <img src="@mark.MarkPictrure.Path" alt="" class="circle">
                 <span class="modal-title upper">@mark.MarkType</span>
+                <a href="#!" class="secondary-content"></a>
+            </li>
+        }
+    </ul>
+    <ul class="collection right" style="max-height:700px;overflow:auto">
+        @foreach (CarRentalSystem.DAL.Models.Car.Body body in bodies)
+        {
+            <li class="collection-item avatar">
+                @if(body.BodyPictrure!=null)
+                { 
+                <img src="@body.BodyPictrure.Path" alt="" class="circle">
+                }
+                <span class="modal-title upper">@body.Name</span>
                 <a href="#!" class="secondary-content"></a>
             </li>
         }

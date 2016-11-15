@@ -1,0 +1,22 @@
+﻿@model CarRentalSystem.DAL.Models.Car.Car
+
+<h2>Confirm</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        User:
+        @User.Identity.Name
+    </div>
+
+    <div>
+        Car:
+        @(ViewBag.CarName);
+
+    </div>
+    <div class="col-md-offset-2 col-md-10">
+
+        <input type="submit" value="Order" class="btn btn-default grey" />
+    </div>
+}

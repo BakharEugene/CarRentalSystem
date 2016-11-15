@@ -1,5 +1,4 @@
-﻿
-using CarRentalSystem.DAL.Models.Information;
+﻿using CarRentalSystem.DAL.Models.Information;
 using System;
 using System.Collections.Generic;
 using System.Linq;

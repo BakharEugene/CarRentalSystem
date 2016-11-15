@@ -12,11 +12,19 @@ namespace CarRentalSystem.Controllers
 {
     public class AccountController : Controller
     {
+        UnitOfWork unit = new UnitOfWork();
+
         public ActionResult Login()
-        {//kek;
+        {
             return View();
         }
-        UnitOfWork unit = new UnitOfWork();
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult Index()
+        {          
+            return View(unit.Users.GetAll().ToList());
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model)
@@ -28,9 +36,7 @@ namespace CarRentalSystem.Controllers
                 using (CarRentalSystemContext db = new CarRentalSystemContext())
                 {
                     user = unit.Users.GetAll().FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
-                        
-                        //db.Customers.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
-
+                       
                 }
                 if (user != null)
                 {
@@ -64,7 +70,6 @@ namespace CarRentalSystem.Controllers
                 using (CarRentalSystemContext db = new CarRentalSystemContext())
                 {
                     user = unit.Users.GetAll().FirstOrDefault(u => u.Email == model.Email);
-                        //db.Customers.FirstOrDefault(u => u.Email == model.Email);
                 }
                 if (user == null)
                 {
