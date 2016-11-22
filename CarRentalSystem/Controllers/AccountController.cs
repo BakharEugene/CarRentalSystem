@@ -51,7 +51,81 @@ namespace CarRentalSystem.Controllers
 
             return View(model);
         }
+        public ActionResult Profile()
+        {
+            User user = unit.Users.GetAll().FirstOrDefault(u => u.Email == User.Identity.Name);
+            EditModel edit = new EditModel
+            {
+                Email = user.Email,
+                ConfirmPassword = user.ConfirmPassword,
+                FirstName = user.FirstName,
+                Gender = user.Gender,
+                LastName = user.LastName,
+                Password = user.Password,
+                Id = user.Id,
+                Skype = user.Skype,
+                Telephone = user.Telephone
+            };
+            return View(edit);
+        }
 
+        [Authorize(Roles = "Admin")]
+        public ActionResult Edit(int? id)
+        {
+            ViewBag.Roles = new SelectList(unit.Roles.GetAll(), "Id", "Name");
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            User user = unit.Users.GetById(id);//db.Monuments.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        // POST: Monuments/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Edit(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                user.Role = unit.Roles.GetById(user.RoleId);
+                unit.Users.Update(user);
+                unit.Save();
+                return RedirectToAction("Index");
+            }
+            return View(user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Profile(EditModel edit)
+        {
+            User user = unit.Users.GetAll().FirstOrDefault(u => u.Email == User.Identity.Name);
+
+            if (ModelState.IsValid)
+            {
+                user.Telephone = edit.Telephone;
+                user.Skype = edit.Skype;
+                user.Password = edit.Password;
+                user.LastName = edit.LastName;
+                user.Gender = edit.Gender;
+                user.FirstName = edit.FirstName;
+                user.Email = edit.Email;
+                user.ConfirmPassword = edit.ConfirmPassword;
+                unit.Users.Update(user);
+                unit.Save();
+                return RedirectToAction("Index", "Home");
+            }
+            return View(user);
+        }
         public ActionResult Register()
         {
             if (User.Identity.IsAuthenticated)
@@ -85,7 +159,7 @@ namespace CarRentalSystem.Controllers
                             ConfirmPassword = model.ConfirmPassword,
                             Gender = model.Gender,
                             Skype = model.Skype,
-                            Telephone = model.Skype,
+                            Telephone = model.Telephone,
                             RoleId=2
                         });
                         unit.Save();

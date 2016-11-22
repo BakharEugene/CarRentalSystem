@@ -235,6 +235,10 @@
     <Compile Include="Migrations\201611051623517_initial25.Designer.cs">
       <DependentUpon>201611051623517_initial25.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611201113324_initial26.cs" />
+    <Compile Include="Migrations\201611201113324_initial26.Designer.cs">
+      <DependentUpon>201611201113324_initial26.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Car\Body.cs" />
     <Compile Include="Models\Car\Car.cs" />
@@ -249,6 +253,7 @@
     <Compile Include="Models\Pictures\MarkPicture.cs" />
     <Compile Include="Models\Providers\CustomProvider.cs" />
     <Compile Include="Models\Information\UnitOfWork.cs" />
+    <Compile Include="Models\Users\EditModel.cs" />
     <Compile Include="Models\Users\Human.cs" />
     <Compile Include="Models\Users\Role.cs" />
     <Compile Include="Models\Users\User.cs" />
@@ -264,6 +269,7 @@
     <Compile Include="Repositories\MarkPicturesRepository.cs" />
     <Compile Include="Repositories\MarkRepository.cs" />
     <Compile Include="Repositories\OrderHistoryRepository.cs" />
+    <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\TransmissionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
@@ -350,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611051623517_initial25.resx">
       <DependentUpon>201611051623517_initial25.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611201113324_initial26.resx">
+      <DependentUpon>201611201113324_initial26.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
