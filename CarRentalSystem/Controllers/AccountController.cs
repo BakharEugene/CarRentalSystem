@@ -177,6 +177,32 @@ namespace CarRentalSystem.Controllers
             }
             return View(model);
         }
+        [Authorize(Roles = "Admin")]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            User user = unit.Users.GetById(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        // POST: Monuments/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            User user = unit.Users.GetById(id);
+            unit.Users.Delete(user.Id);
+            unit.Save();
+            return RedirectToAction("Index");
+        }
         
         public ActionResult Logoff()
         {
