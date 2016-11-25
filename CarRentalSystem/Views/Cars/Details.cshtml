@@ -30,97 +30,73 @@
         </div>
     }
     <div class="row">
-        <div class="col-s9">
-            <table cellspacing="3" cellpadding="1">
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.Mark)
 
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Mark.MarkType)
-                    </td>
-                </tr>
 
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.Body)
-
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Body.Name)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.Fuel)
-
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Fuel.Name)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.Mileage)
-
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Mileage)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.Transmission)
-
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Transmission.Name)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.Model)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Model)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.Volume)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Volume)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.Price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Price)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Description)
-                    </td>
-                </tr>
-
-            </table>
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mark, htmlAttributes: new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.Mark.MarkType</p>
+            </div>
         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.Body</p>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fuel, htmlAttributes: new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.Fuel.Name</p>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mileage, htmlAttributes: new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.Mileage</p>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Transmission, htmlAttributes: new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.Transmission</p>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Model, htmlAttributes: new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.Model</p>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Volume, htmlAttributes: new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.Volume</p>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.Price</p>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.Description</p>
+            </div>
+        </div>
+        <div class="col-sm-10">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default grey" })
+            @Html.ActionLink("Order", "ConfirmOrder", new { id = Model.Id }, new { @class = "btn btn-default grey" })
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default grey" })
+            }
+        </div>
+        
     </div>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default grey" })
-    @Html.ActionLink("Order", "ConfirmOrder", new {id=Model.Id }, new { @class = "btn btn-default grey" })
-    @if (User.IsInRole("Admin"))
-    {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default grey" })
-    }
+    
 </p>

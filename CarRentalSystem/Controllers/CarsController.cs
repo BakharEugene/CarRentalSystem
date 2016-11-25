@@ -104,6 +104,12 @@ namespace CarRentalSystem.Controllers
                 return HttpNotFound();
             }
             SelectList Marks = new SelectList(unit.Marks.GetAll(), "Id", "MarkType");//(.Marks, "Id", "MarkType");
+            SelectList Transmissions = new SelectList(unit.Transmissions.GetAll(), "Id", "Name");//(.Marks, "Id", "MarkType");
+            SelectList Bodies = new SelectList(unit.Bodies.GetAll(), "Id", "Name");//(.Marks, "Id", "MarkType");
+            SelectList Fuels = new SelectList(unit.Fuels.GetAll(), "Id", "Name");//(.Marks, "Id", "MarkType");
+            ViewBag.Bodies = Bodies;
+            ViewBag.Fuels = Fuels;
+            ViewBag.Transmissions = Transmissions;
             ViewBag.Marks = Marks;
             return View(car);
         }
@@ -113,7 +119,7 @@ namespace CarRentalSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Model,Volume,Price,Description,IdMark,IdFuel,IdTransmission,IdBody,IdDriveUnit,Mark,Mileage")] Car car)
+        public ActionResult Edit(Car car)
         {
             if (ModelState.IsValid)
             {

@@ -239,6 +239,10 @@
     <Compile Include="Migrations\201611201113324_initial26.Designer.cs">
       <DependentUpon>201611201113324_initial26.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611251114028_initial27.cs" />
+    <Compile Include="Migrations\201611251114028_initial27.Designer.cs">
+      <DependentUpon>201611251114028_initial27.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Car\Body.cs" />
     <Compile Include="Models\Car\Car.cs" />
@@ -360,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611201113324_initial26.resx">
       <DependentUpon>201611201113324_initial26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611251114028_initial27.resx">
+      <DependentUpon>201611251114028_initial27.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
