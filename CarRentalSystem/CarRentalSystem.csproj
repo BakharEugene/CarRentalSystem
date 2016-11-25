@@ -229,8 +229,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Cars\Delete.cshtml" />
     <Content Include="Views\Cars\Details.cshtml" />
@@ -245,6 +243,7 @@
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
+    <Content Include="Views\Contact\Sent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

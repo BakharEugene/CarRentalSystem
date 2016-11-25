@@ -47,6 +47,9 @@
                     <li>
                         @Html.ActionLink("Cars", "Index", "Cars", new { area = "" }, new { @class = "active" })
                     </li>
+                    <li>
+                        @Html.ActionLink("Feedback", "Index", "Contact")
+                    </li>
                     @if (User.IsInRole("Admin"))
                     {
                         <li>
