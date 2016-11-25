@@ -4,6 +4,7 @@ using CarRentalSystem.DAL.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -56,15 +57,14 @@ namespace CarRentalSystem.Controllers
             User user = unit.Users.GetAll().FirstOrDefault(u => u.Email == User.Identity.Name);
             EditModel edit = new EditModel
             {
-                Email = user.Email,
-                ConfirmPassword = user.ConfirmPassword,
                 FirstName = user.FirstName,
                 Gender = user.Gender,
                 LastName = user.LastName,
-                Password = user.Password,
                 Id = user.Id,
                 Skype = user.Skype,
-                Telephone = user.Telephone
+                Telephone = user.Telephone,
+                Role = user.Role,
+                RoleId = user.RoleId
             };
             return View(edit);
         }
@@ -114,12 +114,9 @@ namespace CarRentalSystem.Controllers
             {
                 user.Telephone = edit.Telephone;
                 user.Skype = edit.Skype;
-                user.Password = edit.Password;
                 user.LastName = edit.LastName;
                 user.Gender = edit.Gender;
                 user.FirstName = edit.FirstName;
-                user.Email = edit.Email;
-                user.ConfirmPassword = edit.ConfirmPassword;
                 unit.Users.Update(user);
                 unit.Save();
                 return RedirectToAction("Index", "Home");

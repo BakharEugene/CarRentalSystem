@@ -23,7 +23,20 @@ namespace CarRentalSystem.DAL.Models
         private FuelRepository fuelRepository;
         private TransmissionRepository transmissionRepository;
         private OrderHistoryRepository orderHistoryRepository;
+        private RoleRepository roleRepository;
 
+
+
+
+        public RoleRepository Roles
+        {
+            get
+            {
+                if (roleRepository == null)
+                    roleRepository = new RoleRepository(db);
+                return roleRepository;
+            }
+        }
         public OrderHistoryRepository OrderHistories
         {
             get

@@ -246,6 +246,7 @@
     <Compile Include="Models\Car\Fuel.cs" />
     <Compile Include="Models\Car\Mark.cs" />
     <Compile Include="Models\Car\Transmission.cs" />
+    <Compile Include="Models\Contacts\EmailModel.cs" />
     <Compile Include="Models\Information\Enums.cs" />
     <Compile Include="Models\Order History\OrderHistory.cs" />
     <Compile Include="Models\Pictures\BodyPictures.cs" />
