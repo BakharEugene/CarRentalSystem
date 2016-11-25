@@ -10,50 +10,60 @@
 <div>
     <h4>Car</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
-
-        <dd>@**@
-
-
-            @Html.DisplayFor(model => model.Model)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Volume)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Volume)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IdMark)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdMark)
-        </dd>
-
-    </dl>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Mark, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Mark.MarkType</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Body.Name</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fuel, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Fuel.Name</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Mileage, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Mileage</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Transmission, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Transmission.Name</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Model, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Model</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Volume, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Volume</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Price</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Description</p>
+        </div>
+    </div>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()

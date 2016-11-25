@@ -7,96 +7,95 @@
     <h4>@Model.Mark.MarkType  @Model.Model</h4>
     <hr />
 
-    @*
-    *@
     <script>
-
-        jQuery(document).ready(function ($) {
-
-            $('.carousel').carousel(
-                {
-                }
-                );
-        });
-
+        $('.carousel').carousel()
     </script>
     @if (Model.Pictures.Count != 0)
     {
-        <div class="carousel" style="height:700px;">
-            @for (int i = 0; i < Model.Pictures.Count; i++)
-            {
-                <a class="carousel-item" style="width:70%; height:700px;"><img style="height:700px;" src=@Model.Pictures.ToList()[i].Path /></a>
-            }
+        <div id="myCarousel" class="carousel slide">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src=@Model.Pictures.ToList()[0].Path alt="First Image" style="width:100%; max-height:700px" />
+                </div>
+                @for (int i = 1; i < Model.Pictures.Count; i++)
+                {
+                    <div class="item">
+                        <img src=@Model.Pictures.ToList()[i].Path alt="Image" style="width:100%; max-height:700px" />
+                    </div>
+                }
+
+            </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
         </div>
     }
-    <div class="row">
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Mark, htmlAttributes: new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-10">
-                <p class="form-control-static">@Model.Mark.MarkType</p>
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-10">
-                <p class="form-control-static">@Model.Body</p>
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Fuel, htmlAttributes: new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-10">
-                <p class="form-control-static">@Model.Fuel.Name</p>
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Mileage, htmlAttributes: new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-10">
-                <p class="form-control-static">@Model.Mileage</p>
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Transmission, htmlAttributes: new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-10">
-                <p class="form-control-static">@Model.Transmission</p>
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Model, htmlAttributes: new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-10">
-                <p class="form-control-static">@Model.Model</p>
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Volume, htmlAttributes: new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-10">
-                <p class="form-control-static">@Model.Volume</p>
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-10">
-                <p class="form-control-static">@Model.Price</p>
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-10">
-                <p class="form-control-static">@Model.Description</p>
-            </div>
-        </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Mark, htmlAttributes: new { @class = "col-sm-2 control-label" })
         <div class="col-sm-10">
-            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default grey" })
-            @Html.ActionLink("Order", "ConfirmOrder", new { id = Model.Id }, new { @class = "btn btn-default grey" })
-            @if (User.IsInRole("Admin"))
-            {
-                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default grey" })
-            }
+            <p class="form-control-static">@Model.Mark.MarkType</p>
         </div>
-        
     </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Body</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fuel, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Fuel.Name</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Mileage, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Mileage</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Transmission, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Transmission</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Model, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Model</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Volume, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Volume</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Price</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.Description</p>
+        </div>
+    </div>
+    <div class="col-sm-10">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default grey" })
+        @Html.ActionLink("Order", "ConfirmOrder", new { id = Model.Id }, new { @class = "btn btn-default grey" })
+        @if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default grey" })
+        }
+    </div>
+
 </div>
 <p>
-    
+
 </p>
