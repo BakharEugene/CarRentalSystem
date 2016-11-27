@@ -14,5 +14,6 @@ namespace CarRentalSystem.DAL.Models.Users
         public string ConfirmPassword { get; set; }
         public int? RoleId { get; set; }
         public virtual Role Role { get; set; }
+        public virtual ICollection<Order_History.OrderHistory> Orders { get; set; }
     }
 }

@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="~/Content/style.css">
 
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
     <script>
-        $(document).ready(function () {
+        jQuery(document).ready(function ($) {
             $('#contact_form').bootstrapValidator({
                 // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
                 feedbackIcons: {
@@ -102,10 +101,8 @@
 <body>
 
     <div class="container">
-        <form class="well form-horizontal" action="/Contacts/Sent"  method="post" id="contact_form">
+        <form class="well form-horizontal" action="/Contact/Sent"  method="post" id="contact_form">
             <legend>Contact Us Today!</legend>
-
-
             <div class="form-group">
                 <label class="col-md-4 control-label">First Name</label>
                 <div class="col-md-4 inputGroupContainer">

@@ -22,7 +22,7 @@ namespace CarRentalSystem.Controllers
 
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
-        {          
+        {
             return View(unit.Users.GetAll().ToList());
         }
 
@@ -37,7 +37,7 @@ namespace CarRentalSystem.Controllers
                 using (CarRentalSystemContext db = new CarRentalSystemContext())
                 {
                     user = unit.Users.GetAll().FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
-                       
+
                 }
                 if (user != null)
                 {
@@ -62,6 +62,7 @@ namespace CarRentalSystem.Controllers
                 LastName = user.LastName,
                 Id = user.Id,
                 Skype = user.Skype,
+                Orders=user.Orders,
                 Telephone = user.Telephone,
                 Role = user.Role,
                 RoleId = user.RoleId
@@ -109,19 +110,16 @@ namespace CarRentalSystem.Controllers
         public ActionResult Profile(EditModel edit)
         {
             User user = unit.Users.GetAll().FirstOrDefault(u => u.Email == User.Identity.Name);
-
-            if (ModelState.IsValid)
-            {
-                user.Telephone = edit.Telephone;
-                user.Skype = edit.Skype;
-                user.LastName = edit.LastName;
-                user.Gender = edit.Gender;
-                user.FirstName = edit.FirstName;
-                unit.Users.Update(user);
-                unit.Save();
-                return RedirectToAction("Index", "Home");
-            }
-            return View(user);
+       
+            user.Telephone = edit.Telephone;
+            user.Skype = edit.Skype;
+            user.LastName = edit.LastName;
+            user.Gender = edit.Gender;
+            user.FirstName = edit.FirstName;
+            user.Orders = edit.Orders;
+            unit.Users.Update(user);
+            unit.Save();
+            return RedirectToAction("Index", "Home");
         }
         public ActionResult Register()
         {
@@ -131,7 +129,7 @@ namespace CarRentalSystem.Controllers
             }
             return View();
         }
-        [HttpPost]  
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterModel model)
         {
@@ -157,7 +155,7 @@ namespace CarRentalSystem.Controllers
                             Gender = model.Gender,
                             Skype = model.Skype,
                             Telephone = model.Telephone,
-                            RoleId=2
+                            RoleId = 2
                         });
                         unit.Save();
                         //db.SaveChanges();
@@ -203,7 +201,7 @@ namespace CarRentalSystem.Controllers
             unit.Save();
             return RedirectToAction("Index");
         }
-        
+
         public ActionResult Logoff()
         {
             FormsAuthentication.SignOut();

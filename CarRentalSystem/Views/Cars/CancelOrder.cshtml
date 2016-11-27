@@ -1,6 +1,8 @@
-﻿@model CarRentalSystem.DAL.Models.Car.Car
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model CarRentalSystem.DAL.Models.Order_History.OrderHistory
 
-<h2>Confirm</h2>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

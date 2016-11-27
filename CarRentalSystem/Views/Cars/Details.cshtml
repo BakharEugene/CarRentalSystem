@@ -39,9 +39,9 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "col-sm-2 control-label" })
+        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "col-sm-2 control-label" })
         <div class="col-sm-10">
-            <p class="form-control-static">@Model.Body</p>
+            <p class="form-control-static">@Model.Status.Name</p>
         </div>
     </div>
     <div class="form-group">
@@ -88,7 +88,10 @@
     </div>
     <div class="col-sm-10">
         @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default grey" })
-        @Html.ActionLink("Order", "ConfirmOrder", new { id = Model.Id }, new { @class = "btn btn-default grey" })
+        @if (User.Identity.IsAuthenticated && @Model.Status.Name == "Free")
+        {
+            @Html.ActionLink("Order", "ConfirmOrder", new { id = Model.Id }, new { @class = "btn btn-default grey" })
+        }
         @if (User.IsInRole("Admin"))
         {
             @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default grey" })

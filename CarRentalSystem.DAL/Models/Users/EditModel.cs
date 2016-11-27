@@ -23,11 +23,12 @@ namespace CarRentalSystem.DAL.Models.Users
         [MaxLength(13,ErrorMessage="Max length is 13")]
         [MinLength(6,ErrorMessage="Min length is 6")]
         public string Telephone { get; set; }
-
         [Required(ErrorMessage = "Input your skype")]
         public string Skype { get; set; }
         public Enums.Genders Gender { get; set; }
         public int? RoleId { get; set; }
+        
         public virtual Role Role { get; set; }
+        public virtual ICollection<Order_History.OrderHistory> Orders { get; set; }
     }
 }

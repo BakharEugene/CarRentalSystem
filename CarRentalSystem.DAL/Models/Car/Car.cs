@@ -36,5 +36,8 @@ namespace CarRentalSystem.DAL.Models.Car
         public virtual Fuel Fuel { get; set; }
         public string Model { get; set; }
         public virtual ICollection<CarPictures> Pictures { get; set; }
+        [ForeignKey("Status")]
+        public int? IdStatus { get; set; }
+        public virtual Status Status { get; set; }
     }
 }

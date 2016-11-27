@@ -27,16 +27,30 @@ namespace CarRentalSystem.Controllers
         }
         public ActionResult ConfirmOrder(int? id)
         {
-            ViewBag.CarName = unit.Cars.GetById(id).Mark.MarkType+" "+ unit.Cars.GetById(id).Model ;
+            ViewBag.CarId = id;
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmOrder(OrderHistory order)
+        public ActionResult ConfirmOrder(Car car)
         {
+            OrderHistory order = new OrderHistory();
+            order.CarId = car.Id;
+            order.UserId = unit.Users.GetAll().Where(u => u.Email == User.Identity.Name).FirstOrDefault().Id;
+            order.Date = DateTime.Now;
+            unit.Cars.GetById(order.CarId).IdStatus = 3;
+            order.IdStatus = 3;
             unit.OrderHistories.Create(order);
             unit.Save();
             return RedirectToAction("Index");
+        }
+        public ActionResult CancelOrder(OrderHistory order)
+        {
+            order.IdStatus = 1;
+            order.Car.IdStatus = 1;
+            unit.Cars.Update(order.Car);
+            unit.OrderHistories.Update(order);
+            return RedirectToAction("Profile", "Account");
         }
         // GET: Cars/Details/5
         public ActionResult Details(int? id)
@@ -83,7 +97,7 @@ namespace CarRentalSystem.Controllers
             car.DriveUnit = unit.DriveUnits.GetById(car.IdDriveUnit);
             car.Fuel = unit.Fuels.GetById(car.IdFuel);
             car.Transmission = unit.Transmissions.GetById(car.IdTransmission);
-
+         
             unit.Cars.Create(car);
             unit.Save();
             //db.SaveChanges();
@@ -169,7 +183,7 @@ namespace CarRentalSystem.Controllers
                     }
                 }
             }
-
+            car.IdStatus = 1;
             unit.Cars.Create(car);
             unit.Save();
           

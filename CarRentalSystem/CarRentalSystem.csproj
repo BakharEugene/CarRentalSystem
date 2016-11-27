@@ -244,6 +244,7 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Contact\Sent.cshtml" />
+    <Content Include="Views\Cars\CancelOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

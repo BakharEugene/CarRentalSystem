@@ -16,6 +16,30 @@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.RoleId)
+            @if (Model.Orders.Count !=null)
+            {
+                <table class="table">
+                    @foreach (var item in Model.Orders)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem=>item.Car.Mark.MarkType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Car.Model)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status.Name)
+                            </td>
+                            
+                            <td>
+                                @Html.ActionLink("Return", "CancelOrder","Cars", new { id = item.Id }, new { @class = "btn btn-default " })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
             <div class="form-group">
                 @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">

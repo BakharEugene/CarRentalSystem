@@ -21,6 +21,7 @@ namespace CarRentalSystem.DAL.EF
         }
         public DbSet<Mark> Marks { get; set; }
         public DbSet<Car> Cars { get; set; }
+        public DbSet<Status> Statuses { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<CarPictures> CarPictures { get; set; }
