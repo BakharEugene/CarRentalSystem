@@ -26,7 +26,10 @@
                         </p>
                     </th>
                     <th>
-                        <p>Date</p>
+                        <p>Start date</p>
+                    </th>
+                    <th>
+                        <p>End date</p>
                     </th>
                     <th>
                         <p>Model</p>
@@ -39,13 +42,16 @@
                     </th>
                     @foreach (var item in Model.Orders)
                     {
-                       
+
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Car.Mark.MarkType)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Date)
+                                @Html.DisplayFor(modelItem => item.StartDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EndDate)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Car.Model)
@@ -53,10 +59,15 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Status.Name)
                             </td>
-
                             <td>
-                                @Html.ActionLink("Return", "CancelOrder", "Cars", new { id = item.Id }, new { @class = "btn btn-default " })
+                                @if (item.IdStatus == 3)
+                                {
+                                    @Html.ActionLink("Return", "CancelOrder", "Cars", new { id = item.Id }, new { @class = "btn btn-default " })
+
+                                }
+                                <p>@Html.ActionLink("Details", "Details", "Cars", new { id = item.Id }, new { @class = "btn btn-default" })</p>
                             </td>
+
                         </tr>
                     }
                 </table>

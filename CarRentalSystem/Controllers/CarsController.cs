@@ -37,7 +37,8 @@ namespace CarRentalSystem.Controllers
             OrderHistory order = new OrderHistory();
             order.CarId = car.Id;
             order.UserId = unit.Users.GetAll().Where(u => u.Email == User.Identity.Name).FirstOrDefault().Id;
-            order.Date = DateTime.Now;
+            order.StartDate = DateTime.Now;
+            order.EndDate = "active order";
             order.IdStatus = 3;
             unit.Cars.GetById(order.CarId).IdStatus = 3;
 
@@ -49,7 +50,8 @@ namespace CarRentalSystem.Controllers
         {
             OrderHistory order = unit.OrderHistories.GetById(tempOrder.Id);
             unit.Cars.GetById(order.CarId).IdStatus = 1;
-            order.IdStatus = 1;
+            order.IdStatus = 2;
+            order.EndDate = DateTime.Now.ToString();
             //order.Car.IdStatus = 1;
             unit.Cars.Update(order.Car);
             unit.OrderHistories.Update(order);

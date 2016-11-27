@@ -22,6 +22,7 @@ namespace CarRentalSystem.DAL.Models.Order_History
         [ForeignKey("Status")]
         public int? IdStatus { get; set; }
         public virtual Status Status { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime StartDate { get; set; }
+        public string EndDate { get; set; }
     }
 }
