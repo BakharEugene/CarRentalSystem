@@ -12,8 +12,8 @@ namespace CarRentalSystem.DAL.Models.Car
     {
         [Key]
         public int Id { get; set; }
-
         public virtual ICollection<Car> Car { get; set; }
+        public virtual ICollection<Order_History.OrderHistory> OrderHistory { get; set; }
         public string Name { get; set; }
     }
 }

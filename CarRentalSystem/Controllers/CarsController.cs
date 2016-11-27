@@ -38,18 +38,22 @@ namespace CarRentalSystem.Controllers
             order.CarId = car.Id;
             order.UserId = unit.Users.GetAll().Where(u => u.Email == User.Identity.Name).FirstOrDefault().Id;
             order.Date = DateTime.Now;
-            unit.Cars.GetById(order.CarId).IdStatus = 3;
             order.IdStatus = 3;
+            unit.Cars.GetById(order.CarId).IdStatus = 3;
+
             unit.OrderHistories.Create(order);
             unit.Save();
             return RedirectToAction("Index");
         }
-        public ActionResult CancelOrder(OrderHistory order)
+        public ActionResult CancelOrder(OrderHistory tempOrder)
         {
+            OrderHistory order = unit.OrderHistories.GetById(tempOrder.Id);
+            unit.Cars.GetById(order.CarId).IdStatus = 1;
             order.IdStatus = 1;
-            order.Car.IdStatus = 1;
+            //order.Car.IdStatus = 1;
             unit.Cars.Update(order.Car);
             unit.OrderHistories.Update(order);
+            unit.Save();
             return RedirectToAction("Profile", "Account");
         }
         // GET: Cars/Details/5
